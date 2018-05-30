@@ -145,9 +145,14 @@ code.hljs {
       }
     }
 
+    > ul {
+      padding: 15px 0;
+      background-color: #f5f7fa;
+    }
+
     > ul li,
     > ol li {
-      color: #666;
+      color: #333;
       font-size: 14px;
       line-height: 20px;
       margin: 10px 0 10px 20px;

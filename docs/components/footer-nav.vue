@@ -31,9 +31,9 @@
     },
 
     watch: {
-      '$route.path': {
-        handler: 'navInit',
-        immediate: true
+      '$route.path'() {
+        this.setNav();
+        this.updateNav();
       }
     },
 
@@ -63,10 +63,11 @@
       },
 
       updateNav() {
-        let baseUrl = '/component'
+        let baseUrl = '/components'
         let currentIndex
 
         this.currentPath = this.$route.path.slice(baseUrl.length)
+        console.log(this.currentPath)
         for (let i = 0, len = this.nav.length; i < len; i++) {
           if (this.nav[i].path === this.currentPath) {
             currentIndex = i
@@ -81,7 +82,7 @@
         this.$route.push(`/components${direction === 'prev' ? this.leftNav.path : this.rightNav.path}`)
       },
 
-      navInit() {
+      created() {
         this.setNav();
         this.updateNav();
       }
