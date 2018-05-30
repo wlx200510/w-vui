@@ -6,7 +6,7 @@ import '../../locale'; // 添加语言记录逻辑
 import bem from '../../mixins/bem';  // 样式命名函数
 import i18n from '../../mixins/i18n'; // 国际化的插件
 
-const install = function(Vue) {
+const install = function(Vue) { // intall方法 可以直接用Vue.use()
   Vue.component(this.name, this);
 };
 
