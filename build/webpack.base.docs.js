@@ -79,8 +79,7 @@ module.exports = {
           compilerOptions: {
             preserveWhitespace: false
           }
-        },
-        include: [resolve('docs')]
+        }
       },
       {
         test: /\.js$/,

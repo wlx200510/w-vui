@@ -5,14 +5,14 @@
       v-if="leftNav"
       :class="bem(['link', 'left'])"
       @click="handleNavClick('prev')">
-      <v-icon name="arrow-left" size="12"></v-icon><span> {{ leftNav.title }}</span>
+      <varl-icon name="arrow-left" size="12"></varl-icon><span> {{ leftNav.title }}</span>
     </a>
     <a
       href="javascript:void(0)"
       v-if="rightNav"
       :class="bem(['link', 'right'])"
       @click="handleNavClick('next')">
-      <span>{{ rightNav.title }} </span><v-icon name="arrow-right" size="12"></v-icon>
+      <span>{{ rightNav.title }} </span><varl-icon name="arrow" size="12"></varl-icon>
     </a>
   </div>
 </template>
@@ -110,10 +110,16 @@
 
   &__left {
     float: left;
+    i {
+      top: 2px;
+    }
   }
 
   &__right {
     float: right;
+    i {
+      top: 2px;
+    }
   }
 }
 </style>

@@ -10,10 +10,12 @@ import './assets/index.css';
 import './assets/docs.css';
 import './assets/nprogress.css';
 import progress from 'nprogress';
+import icon from '../components/icon';
 
 Vue.config.productionTip = false;
 // Vue.use(Vui)
 Vue.use(VueRouter);
+Vue.use(icon);
 
 const routesConfig = registerRoute(navConfig);
 const isProduction = process.env.NODE_ENV === 'production';
