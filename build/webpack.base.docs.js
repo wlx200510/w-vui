@@ -1,7 +1,7 @@
 'use strict'
 const path = require('path')
 const utils = require('./utils')
-const vueLoaderConfig = require('./vue-loader.conf')
+const config = require('./config/docConfig.js')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -11,22 +11,6 @@ const { VueLoaderPlugin } = require('vue-loader')
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
-const config = {
-  showEslintErrorsInOverlay: true,
-  useEslint: false,
-  cssSourceMap: true,
-  devtool: 'cheap-module-eval-source-map',
-  dev: {
-    assetsPublicPath: '/',
-    proxyTable: {},
-    host: 'localhost',
-    port: 3824,
-    autoOpenBrowser: true,
-    errorOverlay: true,
-    notifyOnErrors: true,
-    poll: false
-  }
-}
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }

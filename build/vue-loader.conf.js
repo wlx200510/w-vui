@@ -1,16 +1,9 @@
 'use strict'
-const utils = require('./utils')
-const isProduction = process.env.NODE_ENV === 'production'
-const sourceMapEnabled = true
+const config = require('./config/demoConfig')
 
 module.exports = {
-  loaders: utils.cssLoaders({
-    sourceMap: sourceMapEnabled,
-    extract: isProduction
-  }),
-  cssSourceMap: sourceMapEnabled,
-  cacheBusting: true,
-  transformToRequire: {
+  cacheBusting: config.dev.cacheBusting,
+  transformAssetUrls: { // 可以直接引用本地的图片资源了
     video: ['src', 'poster'],
     source: 'src',
     img: 'src',

@@ -52,7 +52,7 @@
       },
       showPivot: {
         type: Boolean,
-        default: ture
+        default: true
       },
       pivotText: {
         type: String,

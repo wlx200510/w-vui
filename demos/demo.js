@@ -2,8 +2,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './demoApp';
 import routes from './demoRoutes';
+import Varl from '../components';
 
-Vue.use(VueRouter);
+Vue.use(VueRouter).use(Varl);
 
 const router = new VueRouter({
   mode: 'hash',
@@ -14,9 +15,6 @@ const router = new VueRouter({
 router.afterEach(() => {
   if (router.currentRoute.name) {
     window.scrollTo(0, 0);
-  }
-  if (!router.currentRoute.redirectedFrom) {
-    Vue.nextTick(() => window.syncPath());
   }
 });
 

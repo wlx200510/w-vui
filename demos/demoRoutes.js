@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import demoConfig from './demo.config';
 import DemoList from './components/DemoList';
 import Vue from 'vue';
@@ -8,14 +9,14 @@ const registerRoute = () => {
     redirect: to => `/zh-CN/`
   }];
 
-  Object.keys(docConfig).forEach((lang, index) => {
+  Object.keys(demoConfig).forEach((lang, index) => {
     route.push({
       path: `/${lang}`,
-      conponent: DemoList,
+      component: DemoList,
       meta: { lang }
     });
 
-    const navs = docConfig[lang].list || [];
+    const navs = demoConfig[lang].list || [];
     navs.forEach(nav => {
       if (nav.list) {
         nav.list.forEach(page => addRoute(page, lang));
@@ -30,8 +31,7 @@ const registerRoute = () => {
       if (path) {
         const name = lang + '/' + path.replace('/', '');
         let component;
-
-        component = () => import(`./view${page.title}.md`)
+        component = () => import(`./view${path}.vue`)
         route.push({
           name,
           component,

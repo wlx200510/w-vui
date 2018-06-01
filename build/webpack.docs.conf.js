@@ -2,19 +2,12 @@
 const utils = require('./utils')
 const webpack = require('webpack')
 const baseWebpackConfig = require('./webpack.base.docs')
+const config = require('./config/docConfig')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
-baseWebpackConfig.plugins.push(
-  new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: '"development"'
-    }
-  })
-)
-
 module.exports = new Promise((resolve, reject) => {
-  portfinder.basePort = 3824
+  portfinder.basePort = config.dev.port
   portfinder.getPort((err, port) => {
     if (err) {
       reject(err)
