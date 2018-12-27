@@ -1,42 +1,77 @@
-# 组件库架构思考
+# [w-vui](https://brickies.github.io/vui/)
 
-分为四个部分：
-- 一个部分是要迁移来的组件的代码，学着写一遍
-- 第二部分是 dev 调试用的框架，这个使用一个模板单独生成
-- 第三部分是使用说明文档，无特殊情况直接 copy
-- 第四部分是延伸考虑组件库的发布和打包，但这个不急，因为自己的仓库可以拷贝后随便用
+[![Version](https://img.shields.io/npm/v/w-vui.svg)](https://www.npmjs.com/package/w-vui) [![Downloads](http://img.shields.io/npm/dm/w-vui.svg)](https://www.npmjs.com/package/w-vui) [![License](https://img.shields.io/npm/l/w-vui.svg?style=flat)](https://opensource.org/licenses/MIT) [![TravisCI](https://travis-ci.org/wlx200510/varl_components.svg)](https://travis-ci.org/wlx200510/varl_components)
 
-主要是考虑组件库的样式和主题都比较单一，为了自己的业务需求，需要灵活地修改样式和交互式直接可以触及组件层面进行修改，发布和打包并非考虑的重点
+> It's a A personal Vue UI component library .
 
-## 目录架构的考虑
+## 安装
 
-`components` 用于存放迁移来后的组件文件
-`styles` 用于存放各个组件的样式文件，方便统一引入
-`docs` 用于放置组件说明文档，主要就是属性和`API`
-`demos` 用于调试和引入组件，方便这个库的开发和确认
-`build` 用于放置自动生成代码的脚本和打包配置文件
+### npm 安装
 
-尽管存在不少的架构难点，但这个仓库一定要做起来。
+```shell
+npm i w-vui -S // 这个库目前不是注册的npm
+```
 
-## 组件相关优化
+### CDN
+```html
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/w-vui/lib/vui-css/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/w-vui/lib/vui.js"></script>
+```
 
-对`Vue`进行公共注入，然后在每个组件里面使用
+## 快速开始
 
-- 支持插件引入
-- 支持直接引入
-- 样式直接引入
-- 公共函数方法的抽取
+### 完整引入
 
-* 已添加基本布局组件`col`和`row`
-* 研究弹窗组件的实现
+```javascript
+import Vue from 'vue'
+import vui from 'w-vui'
+import 'w-vui/lib/vui-css/index.css';
 
-@todo:
+Vue.use(vui)
+```
 
-- 补充完成公共组件(四个) 优先icon 已完成
-- 搭建起来开发平台 -> 首先搭建enter列表页 也就是先要完善列表页需要的组件 -> 搭建每个组件对应的路由
-- `markdown`的渲染框架 用[这里](https://zhuanlan.zhihu.com/p/34654857)来搭建目录/文档渲染(自己写的loader)
-- 渲染框架懒加载(done)
+### 部分引入
 
-目前组件调试的开发平台`done` npm start 后先生成各个组件的入口index.js 然后被引用到demo库中，然后就可以在demo中进行开发。
+```javascript
+import Vue from 'vue'
+import {
+  Scroller,
+  Select
+  // ...
+} from 'w-vui'
+import 'w-vui/lib/vui-css/scroller.css';
+import 'w-vui/lib/vui-css/select.css';
 
-每个组件可以对应的拷贝到不同项目进行使用，先尝试迁移popup这个组件。
+Vue.component(Scroller.name, Scroller)
+Vue.component(Select.name, Select)
+```
+
+### 引入插件
+
+**注：完整引入了vui，则无需再注册插件**
+
+```javascript
+import Vue from 'vue';
+import { 
+  $Toast, 
+  $Dialog 
+  // ...
+} from 'w-vui';
+
+Vue.prototype.$toast = $Toast
+Vue.prototype.$dialog = $Dialog
+```
+ 
+## 贡献代码
+
+修改代码请阅读 [开发指南](https://github.com/wlx200510/varl_components/blob/dev/.github/CONTRIBUTING.md)， 使用过程中发现任何问题都可以提 [Issue](https://github.com/wlx200510/varl_components/issues) 给我。当然，我也非常欢迎你给我发 [PR](https://github.com/wlx200510/varl_components/pulls)。
+
+## 开源协议
+
+本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源。
+
+## 特别感谢
+
+该组件库部分灵感来自于 [`element`](https://github.com/ElemeFE/element) 和 [`vant`](https://github.com/youzan/vant)，这里感谢 [`饿了么前端团队`](https://github.com/ElemeFE) 和 [`有赞前端团队`](https://github.com/youzan) 对开源项目的贡献，手动点波赞 👍 
